@@ -53,6 +53,17 @@ main {
     margin: 15vw;
 }
 
+
+
+* {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+main>p,
+footer p {
+    font-weight: bold;
+}
+
 #card1,
 #card3,
 #card5 {
@@ -69,12 +80,4 @@ main {
 #card3 img,
 #card5 img {
     border-radius: 50%;
-}
-
-* {
-    font-family: 'Courier New', Courier, monospace;
-}
-main>p,
-footer p {
-font-weight: bold;
 }
