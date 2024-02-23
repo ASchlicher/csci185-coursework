@@ -1,0 +1,30 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+* {
+    border: solid 1px black;
+}
+
+nav,ul{
+    display: flex;
+}
+ul{
+    list-style-type: none;
+}
+
+nav{
+    position: fixed;
+    width: 100vw;
+    justify-content: space-between;
+}
+
