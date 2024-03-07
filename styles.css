@@ -65,13 +65,12 @@ section {
     grid-template-columns: repeat(4, 1fr);
 }
 
-#projects p, #projects a {
+#projects p {
     border: 1px black solid;
     padding: 10%;
     margin: 10%;
     text-align: center;
 }
-
 #inspiration {
     grid-column: 1/9;
 }
