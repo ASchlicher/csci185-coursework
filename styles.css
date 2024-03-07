@@ -65,7 +65,7 @@ section {
     grid-template-columns: repeat(4, 1fr);
 }
 
-#projects p {
+#projects p, #projects a {
     border: 1px black solid;
     padding: 10%;
     margin: 10%;
