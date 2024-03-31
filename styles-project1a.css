@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+
+}
+header{
+    border: 1px black solid;
+    margin-bottom: 10px;
+   display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+h1{
+    text-align: center;
+    border: 1px black solid;
+    grid-column: 2/span 1;
+    padding: 5px;
+}
+body {
+    margin: 0px;
+    font-family: Arial, sans-serif;
+}
+
+p,
+a,
+li {
+    line-height: 1.5em;
+    font-size: 1.1em;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 33fr 17fr 17fr 33fr
+}
+
+h2{
+    text-align: center;
+}
+section {
+    border: 1px black solid;
+    margin: 10px;
+}
+
+#tutorials {
+    grid-column: 1 / span 2;
+}
+
+#homework {
+    grid-column: 3/ span 2;
+}
+
+#class-exercises {
+    grid-column: 1/2
+}
+
+#quizzes {
+    grid-column: 2/4
+}
+
+#practice-quizzes {
+    grid-column: 4/5
+}
+
+#projects {
+    grid-column: 1/9;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+#projects p {
+    border: 1px black solid;
+    padding: 10%;
+    margin: 10%;
+    text-align: center;
+}
+#inspiration {
+    grid-column: 1/9;
+}
+
+#inspiration li {
+    border: 1px black solid;
+    list-style-type: none;
+    margin: 5%;
+
+}
+
+#inspiration ul {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 0%;
+}
+
+ul{
+    padding: 5%;
+    list-style-type: none;
+}
+
+@media (max-width: 600px){
+main{
+    display: grid;
+    grid-template-columns: 1fr
+}
+#tutorials,#homework,#class-exercises,#quizzes,#practice-quizzes,#projects,#inspiration{
+grid-column: 1/span 1;
+}
+#projects{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+#inspiration ul{
+grid-template-columns: 1fr;
+}
+#inspiration li{
+    margin:5px;
+    border:none;
+}
+}
