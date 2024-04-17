@@ -8,12 +8,12 @@ const studentList = [
     {
         name: "Atlas",
         image_url: "https://i.pravatar.cc/150?id=1",
-        favorite_color: getRandomColor(),
+        favorite_color: "aquamarine",
     },
     {
         name: "Avery",
         image_url: "https://i.pravatar.cc/150?id=2",
-        favorite_color: getRandomColor(),
+        favorite_color: "blue",
     },
     {
         name: "Cali",
@@ -62,8 +62,8 @@ const studentList = [
     },
     {
         name: "Keiran",
-        image_url:
-            "https://i.pravatar.cc/150?id=12, favorite_color: getRandomColor()",
+        image_url:"https://i.pravatar.cc/150?id=12",
+        favorite_color: getRandomColor(),
     },
     {
         name: "Kelly",
@@ -110,15 +110,17 @@ const studentList = [
 // Your code goes here....
 const containerEl = document.querySelector("#output_container");
 
-function showStudents(){
-    for (let i=0;i<studentList.length;i++){
+function showStudents() {
+    for (let i = 0; i < studentList.length; i++) {
         // containerEl.insertAdjacentHTML("beforeend", `<p>${nameList[i]}</p>`);
         console.log(studentList[i])
-        containerEl.insertAdjacentHTML("afterbegin", `<section class="card">
-        <img src="https://i.pravatar.cc/150?id=1" />
-        <p>Name: <strong>Walter</strong></p>
-        <p>Favorite Color: <strong>yellow</strong></p>
-    </section>`);
+        const myTemplate =
+            `<section class="card">
+        <img src="${studentList[i].image_url}" />
+        <p>Name: <strong>${studentList[i].name}</strong></p>
+        <p>Favorite Color: <strong>${studentList[i].favorite_color}</strong></p>
+    </section>`;
+        containerEl.insertAdjacentHTML("afterbegin", myTemplate);
     }
 }
 function clearContainer() {
