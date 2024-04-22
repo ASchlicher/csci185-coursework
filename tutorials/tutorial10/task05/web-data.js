@@ -1,12 +1,12 @@
 const containerEl = document.querySelector("#output_container");
 
 async function showSong() {
-    const searchTerm = "Nick Phoenix";
+    const searchTerm = document.querySelector("#term").value;
     const url = `https://www.apitutor.org/spotify/simple/one/v1/search?q=${searchTerm}&type=track`;
+    console.log(url);
     const response = await fetch(url);
     const song = await response.json();
-    console.log(song);
-
+  
     // your code goes here. Figure out how to output something like this to the screen,
     // but with the song data returned from the server...
    const songTemplate = `<section class="song">

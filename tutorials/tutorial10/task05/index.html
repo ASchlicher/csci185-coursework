@@ -26,8 +26,8 @@
 
 
         <section>
-            <h2>Query and play a song</h2>
-            <p>When the "Get Song" button (below) is clicked, name, artist, album cover, and audio clip
+            <h2>Song Search</h2>
+            <!-- <p>When the "Get Song" button (below) is clicked, name, artist, album cover, and audio clip
                 of a song. Each song should be
                 represented in the following format (but the actual info should be different):
             </p>
@@ -43,8 +43,11 @@
 
             <p>Note: you will not need to use a loop here. Just output the appropriate properties from the
                 <code>song</code> object!
-            </p>
+            </p> -->
             <nav>
+                <label for="term">Search Term</label>
+                <input type="text" id="term" name="term">
+                
                 <button onclick="showSong()">Show Song</button>
                 <button onclick="clearContainer()">Clear</button>
             </nav>
