@@ -1,9 +1,9 @@
 const baseURL = 'https://www.apitutor.org/spotify/simple/v1/search';
-const fancyURL ="https://www.apitutor.org/spotify/v1/"
+const fancyURL ='https://www.apitutor.org/spotify/v1/';
 
 function search(ev) {
     const term = document.querySelector('#search').value;
-    console.log('search for:', term);
+    // console.log('search for:', term);
     // issue three Spotify queries at once...
     getTracks(term);
     getAlbums(term);
@@ -17,6 +17,7 @@ async function getTracks(term) {
     const url = `${baseURL}?type=track&q=${term}&limit=5`;
     const request = await fetch(url);
     const data = await request.json();
+    console.log(url)
     if (data.length === 0) {
         document.querySelector("#tracks").innerHTML = "No Tracks Found";
     }
@@ -42,11 +43,11 @@ async function getTracks(term) {
    
 }
 
-function playTrack(id){
-    console.log(id);
+function playTrack(trackId){
+    // console.log(id);
     const iframe = `
         <iframe style="border-radius:12px" 
-        src=https://open.spotify.com/embed/track/${id}?utm_source=generator" 
+        src=https://open.spotify.com/embed/track/${trackId}?utm_source=generator" 
         width="100%" 
         height="352" 
         frameBorder="0" 
@@ -65,7 +66,7 @@ async function getAlbums(term) {
     console.log(url)
     document.querySelector("#albums").innerHTML = "";
     function card(num) {
-        return `<section class="album-card" id="2lATw9ZAVp7ILQcOKPCPqp">
+        return `<section class="album-card" onclick="albumSongs('${data[num].name}','${data[num].id}','${data[num].image_url}')">
                         <div>
                             <img src=${data[num].image_url} alt="${data[num].name}">
                             <h2>${data[num].name}</h2>
@@ -86,13 +87,13 @@ async function getArtist(term) {
     const url = `${baseURL}?q=${term}&type=artist&limit=1`;
     const request = await fetch(url);
     const data = await request.json();
-    console.log(url);
+    // console.log(url);
     // the following if statement being data.length came from chatgpt
     if (data.length === 0) {
         document.querySelector("#artist").innerHTML = "Artist Not Found"
     }
     const snippet = `
-            <section class="artist-card" id="${data[0].id}">
+            <section class="artist-card" onclick="topTracks('${data[0].id}','${data[0].name}')">
                 <div>
                     <img src=${data[0].image_url} alt="${data[0].name}">
                         <h2>${data[0].name}</h2>
@@ -108,8 +109,62 @@ async function getArtist(term) {
     container.innerHTML = snippet;
 };
 
+async function topTracks(artistId,artistName){
+    console.log(artistId, artistName)
+    const url = `${fancyURL}artists/${artistId}/top-tracks?country=us`;
+    const request = await fetch(url);
+    const data = await request.json();
+    console.log(url);
+    document.querySelector("#tracks").innerHTML = "";
+    function tracks(num) {
+        return `<section class="track-item preview" onclick =playTrack("${data.tracks[num].id}")>
+                <img src=${data.tracks[num].album.images[0].url} alt="${data.tracks[num].album.name}>
+                <i class="fas play-track fa-play" aria-hidden="true"></i>
+                <div class="label">
+                    <h2>${data.tracks[num].name}</h2>
+                    <p>
+                        ${data.tracks[num].artists[0].name}
+                    </p>
+                </div>
+            </section>`;
+    }
+    
+
+    for (let i = 0; i < 5; i++) {
+        document.querySelector("#tracks").innerHTML += tracks(i);
+    }
 
 
+}
+
+async function albumSongs(albumName, albumId, albumImage){
+    console.log(albumName, albumId)
+    const url = `${fancyURL}albums/${albumId}/tracks`;
+    const request = await fetch(url);
+    const data = await request.json();
+    console.log(url);
+    console.log(data.items[0])
+
+    function tracks(num) {
+        return `<section class="track-item preview" onclick =playTrack("${data.items[num].id}")>
+                <img src=${albumImage} alt="${albumName}>
+                <i class="fas play-track fa-play" aria-hidden="true"></i>
+                <div class="label">
+                    <h2>${data.items[num].name}</h2>
+                    <p>
+                        ${data.items[num].artists[0].name}
+                    </p>
+                </div>
+            </section>`;
+    }
+    
+    document.querySelector("#tracks").innerHTML = "";
+    for (let i = 0; i < 5; i++) {
+        document.querySelector("#tracks").innerHTML += tracks(i);
+    }
+
+
+}
 
 document.querySelector('#search').onkeyup = function (ev) {
     // Number 13 is the "Enter" key on the keyboard
